@@ -1,5 +1,5 @@
+
 def strTolist(string):
-    string = string.replace(' ','')
     tmp = list(string)
     byte = []
     for i in range(0, len(tmp), 2):
@@ -48,10 +48,4 @@ def fcs16(arr):
         fcs16 = (fcs16 >> 8) ^ FCS16Table[(fcs16 ^ i) & 0xFF]
     tmp = hex(bit_not(fcs16, 16))
 
-    return tmp[-2:]+tmp[2:4]
-
-array1 = 'A00802FF2393'
-array2 = 'A0 45 02 FF 23 10 64 76 E6 E6 00 60 36 A1 09 06 07 60 85 74 05 08 01 01 8A 02 07 80 8B 07 60 85 74 05 08 02 01 AC 0A 80 08 31 41 32 42 33 43 34 44 BE 10 04 0E 01 00 00 00 06 5F 1F 04 00 00 18 1D FF FF'
-
-print(fcs16((strTolist(array1))))
-print(fcs16((strTolist(array2))))
+    return tmp[-2:] + tmp[2:4]

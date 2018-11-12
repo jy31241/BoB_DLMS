@@ -11,7 +11,7 @@ def title():
        / __ \/ /   /  |/  / ___/___  ____  ____/ /__  _____ver 1.0
       / / / / /   / /|_/ /\__ \/ _ \/ __ \/ __  / _ \/ ___/
      / /_/ / /___/ /  / /___/ /  __/ / / / /_/ /  __/ /    
-    /_____/_____/_/  /_//____/\___/_/ /_/\__,_/\___/_/     by.bl@ckout
+    /_____/_____/_/  /_//____/\___/_/ /_/\____/\___/_/     by.bl@ckout
         
      """
     print(title)
@@ -33,12 +33,11 @@ def get_args():
     parser.add_argument("-s", "--server",
                         help="Enter the address of the server to connect to. (decimal) default : 111")
 
+
     return parser.parse_args()
 
 def main():
     args = get_args()
-    client = 1
-    server = 111
     if args.version:
         print("DLMSender Version:" + __VERSION)
         exit()
@@ -62,8 +61,34 @@ if __name__ == '__main__':
 
     try:
         port, server, client = main()
-        #DLMS.connect(port, server, client)
-        DLMS.connect(port)
+
+        con = DLMS.DLMS(port, server, client)
+        data = con.SNRMquery()
+        print("Request SNRM : " + data[0])
+        print("Response SNRM : " + data[1])
+        pwd = input("Password : ")
+        data = con.AARQquery(pwd)
+
+        print("\nAARQ : " + data[0])
+        print("AARE : " + data[1])
+        if len(data[1]) > 104:
+            print("\nConnect !!!")
+            usercmd = input(">> ")
+            if usercmd == 'pwchg':
+                userinputpw = input(": ")
+                data = con.set_password_query(userinputpw)
+                print("Set Password Request : " + data[0])
+                if data[1][-8:-6] == '00':
+                    print("Changed successfully : " + data[1])
+                else:
+                    print("FAIL !!")
+            if usercmd == 'exit':
+                exit()
+            else:
+                print(" ")
+        else:
+            print("Worng!!")
+
     except KeyboardInterrupt:
         print("Interrupt received! Exiting cleanly...")
 
