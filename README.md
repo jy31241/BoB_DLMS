@@ -1,4 +1,10 @@
-# 한국정보기술연구원(KITRI) Best of the Best  
+# 전자식 전력량계와 DLMS/COSEM 프로토콜 통신을 위한 도구  
 
-KITRI BoB 7기 프로젝트 'AMI 취약점 분석 및 대응방안 연구'  
-DLMS 프로토콜 통신 및 퍼징 툴 개발중....
+### DLMS/COSEM 프로토콜 통신을 이용한 전력그리드 공격  
+> 한전 운영프로그램과 통신 봉쇄  
+> 수용가의 전력 차단  
+> 개인 프라이버시 침해  
+
+
+### 한국정보기술연구원(KITRI) Best of the Best7th 
+
