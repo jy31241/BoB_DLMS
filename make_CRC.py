@@ -46,6 +46,9 @@ def fcs16(arr):
     fcs16 = 0xFFFF
     for i in arr:
         fcs16 = (fcs16 >> 8) ^ FCS16Table[(fcs16 ^ i) & 0xFF]
-    tmp = hex(bit_not(fcs16, 16))
+    tmp = '{:04x}'.format(bit_not(fcs16, 16))
 
-    return tmp[-2:] + tmp[2:4]
+    return tmp[-2:] + tmp[0:2]
+
+#print(fcs16(strTolist("fea4a1b7aea55fbfef74684d499990a026b290d02724a02021489492a0204ecb")))
+
