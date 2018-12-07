@@ -1,6 +1,6 @@
 import argparse
 import DLMS
-import command
+
 
 __VERSION = "1.0"
 
@@ -97,8 +97,8 @@ if __name__ == '__main__':
                     else:
                         print("FAIL !!")
                 elif usercmd == '2':  # change electric thredhold
-                    userinputlimit = input("Enter limit to change (5~#) : ")
-                    if 5<userinput<1000:
+                    userinputlimit = int(input("Enter limit to change (5~1000) : "))
+                    if 5<=userinputlimit and userinputlimit<=1000:
                         data = con.blackout(userinputlimit)
                         print("Set limit Request : " + data[0])
                         if data[1][-8:-6] == '00':

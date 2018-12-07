@@ -42,10 +42,11 @@ class DLMS():
     def getaddress(self):
         client = hex((int(self.src) + 16) * 2 + 1)[-2:]
         server = hex((int(self.dst) + 16) * 2 + 1)[-2:]
-        if (int(self.src) + 16) * 2 + 1 > 111:
-            client = '02' + client
-        if (int(self.dst) + 16) * 2 + 1 > 111:
-            server = '02' + server
+        #int(self.src) + 16) * 2 + 1 > 111:
+        #    client = '02' + client
+        #if (int(self.dst) + 16) * 2 + 1 > 111:
+        #    server = '02' + server
+        server = '02' + server
         return [server, client]
 
     def SNRMquery(self):
@@ -122,7 +123,6 @@ class DLMS():
         chg_limit_obis = list(obis_code.electric_thredhold_obis.keys())[0]
         att_id = obis_code.electric_thredhold_obis.get(chg_limit_obis)
         obis_len = '12'
-        round(inputlimit,1)
         limit = format(inputlimit,'04x')
 
         address = DLMS.getaddress(self)
@@ -219,11 +219,10 @@ class DLMS():
         date = date_convert(date)
         return date
     def sniff_mode(self,server_addr):
-        os.system('CLS')
+        
         print("#########################")
         print("######Sniffing Mode######")
         print("#########################")
-        print("현월 누적 전력량\n")
         print("If you want to exit program, raise KeyboardInterrupt by pressing 'Ctrl + C' \n")
         power_obis = list(obis_code.active_power.keys())[0]
         att_id = obis_code.active_power.get(power_obis)
