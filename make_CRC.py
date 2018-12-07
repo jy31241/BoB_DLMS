@@ -52,3 +52,5 @@ def fcs16(arr):
 
 #print(fcs16(strTolist("fea4a1b7aea55fbfef74684d499990a026b290d02724a02021489492a0204ecb")))
 
+
+

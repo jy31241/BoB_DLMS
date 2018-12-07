@@ -1,7 +1,6 @@
 import argparse
 import DLMS
 
-
 __VERSION = "1.0"
 
 def title():

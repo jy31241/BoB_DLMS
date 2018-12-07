@@ -7,7 +7,6 @@ import os
 import time
 import struct
 
-
 header = '7EA0'
 footer = '7E'
 LLC_Address = 'e6e600'
